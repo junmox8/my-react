@@ -2,7 +2,7 @@
  * @Author: root 931097192@qq.com
  * @Date: 2024-05-25 00:05:43
  * @LastEditors: root 931097192@qq.com
- * @LastEditTime: 2024-05-25 14:53:48
+ * @LastEditTime: 2024-05-25 17:44:59
  * @FilePath: \react\packages\react\src\jsx.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -40,7 +40,7 @@ export const jsx = (
 	let key: Key = null;
 	const props: Props = {};
 	let ref: Ref = null;
-	for (let prop in config) {
+	for (const prop in config) {
 		const val = config[prop];
 		if (prop === 'key') {
 			if (val) {
@@ -71,4 +71,28 @@ export const jsx = (
 	return ReactElement(type, key, ref, props);
 };
 
-export const jsxDEV = jsx;
+export const jsxDEV = (type: ElementType, config: any) => {
+	let key: Key = null;
+	const props: Props = {};
+	let ref: Ref = null;
+	for (const prop in config) {
+		const val = config[prop];
+		if (prop === 'key') {
+			if (val) {
+				key += val;
+			}
+			continue;
+		}
+		if (prop === 'ref') {
+			if (val) {
+				ref = val;
+			}
+			continue;
+		}
+		if (Object.prototype.hasOwnProperty.call(config, prop)) {
+			props[prop] = val;
+		}
+	}
+
+	return ReactElement(type, key, ref, props);
+};

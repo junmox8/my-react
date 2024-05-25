@@ -13,7 +13,7 @@ export type Key = any;
 export type ElementType = any;
 
 export interface ReactElementType {
-	$$typeof: Symbol | number;
+	$$typeof: symbol | number;
 	type: Type;
 	key: Key;
 	props: Props;
