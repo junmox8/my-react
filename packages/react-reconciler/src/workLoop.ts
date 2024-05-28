@@ -55,6 +55,7 @@ function renderRoot(root: FiberRootNode) {
 
 function workLoop() {
 	while (workInProgress !== null) {
+		//起始于fiberRoot
 		performUnitOfWork(workInProgress);
 	}
 }
