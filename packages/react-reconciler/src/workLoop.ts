@@ -1,3 +1,11 @@
+/*
+ * @Author: root 931097192@qq.com
+ * @Date: 2024-05-25 22:42:15
+ * @LastEditors: root 931097192@qq.com
+ * @LastEditTime: 2024-05-26 17:01:01
+ * @FilePath: \react\packages\react-reconciler\src\workLoop.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { FiberNode, FiberRootNode, createWorkInProgress } from './fiber';
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
@@ -37,7 +45,9 @@ function renderRoot(root: FiberRootNode) {
 			workLoop();
 			break;
 		} catch (e) {
-			console.warn('workInProgress发生错误', e);
+			if (__DEV__) {
+				console.warn('workInProgress发生错误', e);
+			}
 			workInProgress = null;
 		}
 	} while (true);

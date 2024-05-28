@@ -16,6 +16,7 @@
 		"@commitlint/config-conventional": "^17.1.0",
 		"@rollup/plugin-commonjs": "^25.0.8",
 		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-replace": "^5.0.5",
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
 		"@typescript-eslint/parser": "^5.40.0",
 		"commitlint": "^17.1.2",
