@@ -2,7 +2,7 @@
  * @Author: root 931097192@qq.com
  * @Date: 2024-05-25 22:42:15
  * @LastEditors: root 931097192@qq.com
- * @LastEditTime: 2024-05-26 17:01:01
+ * @LastEditTime: 2024-05-30 12:46:01
  * @FilePath: \react\packages\react-reconciler\src\workLoop.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,6 +10,7 @@ import { FiberNode, FiberRootNode, createWorkInProgress } from './fiber';
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
 import { HostRoot } from './workTag';
+import { MutationMask, NoFlags } from './fiberFlag';
 
 let workInProgress: FiberNode | null = null;
 
@@ -55,6 +56,29 @@ function renderRoot(root: FiberRootNode) {
 	const finishedWork = root.current.alternate;
 	root.finishedWork = finishedWork;
 	commitRoot(root);
+}
+
+function commitRoot(root: FiberRootNode) {
+	const finishedWork = root.finishedWork;
+	if (!finishedWork) {
+		return;
+	}
+	if (__DEV__) {
+		console.warn('commit阶段开始', finishedWork);
+	}
+
+	root.finishedWork = null;
+
+	const subtreeHasEffect =
+		(finishedWork.subtreeFlags & MutationMask) !== NoFlags;
+	const rootHasEffect = (finishedWork.flags & MutationMask) !== NoFlags;
+
+	if (subtreeHasEffect || rootHasEffect) {
+		//执行commit的三个阶段操作
+		root.current = finishedWork;
+	} else {
+		root.current = finishedWork;
+	}
 }
 
 function workLoop() {
