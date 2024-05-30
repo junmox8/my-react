@@ -11,6 +11,7 @@ import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
 import { HostRoot } from './workTag';
 import { MutationMask, NoFlags } from './fiberFlag';
+import { commitMutationEffects } from './commitWork';
 
 let workInProgress: FiberNode | null = null;
 
@@ -75,6 +76,7 @@ function commitRoot(root: FiberRootNode) {
 
 	if (subtreeHasEffect || rootHasEffect) {
 		//执行commit的三个阶段操作
+		commitMutationEffects(root);
 		root.current = finishedWork;
 	} else {
 		root.current = finishedWork;
