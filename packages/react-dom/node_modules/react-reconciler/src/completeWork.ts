@@ -2,7 +2,7 @@
  * @Author: root 931097192@qq.com
  * @Date: 2024-05-25 22:40:07
  * @LastEditors: root 931097192@qq.com
- * @LastEditTime: 2024-05-30 22:44:42
+ * @LastEditTime: 2024-05-31 11:32:26
  * @FilePath: \react\packages\react-reconciler\src\completeWork.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,7 +15,12 @@ import {
 	createTextInstance
 } from 'hostConfig';
 import { FiberNode } from './fiber';
-import { HostComponent, HostRoot, HostText } from './workTag';
+import {
+	FunctionComponent,
+	HostComponent,
+	HostRoot,
+	HostText
+} from './workTag';
 import { NoFlags } from './fiberFlag';
 
 export const completeWork = (wip: FiberNode) => {
@@ -47,6 +52,9 @@ export const completeWork = (wip: FiberNode) => {
 			bubbleProperties(wip);
 			return null;
 		case HostRoot:
+			bubbleProperties(wip);
+			return null;
+		case FunctionComponent:
 			bubbleProperties(wip);
 			return null;
 		default:
