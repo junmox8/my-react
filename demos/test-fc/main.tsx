@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
 }
 
 function Child() {
-	return <span>big-react</span>;
+	const [num, setNum] = useState(10);
+	console.log(setNum);
+	return <span>{num}</span>;
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
