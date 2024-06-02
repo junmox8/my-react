@@ -2,7 +2,7 @@
  * @Author: root 931097192@qq.com
  * @Date: 2024-05-25 00:05:43
  * @LastEditors: root 931097192@qq.com
- * @LastEditTime: 2024-05-25 17:44:59
+ * @LastEditTime: 2024-06-02 20:43:38
  * @FilePath: \react\packages\react\src\jsx.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -96,3 +96,11 @@ export const jsxDEV = (type: ElementType, config: any) => {
 
 	return ReactElement(type, key, ref, props);
 };
+
+export function isValidElement(object: any) {
+	return (
+		typeof object === 'object' &&
+		object !== null &&
+		object.$$typeof === REACT_ELEMENT_TYPE
+	);
+}

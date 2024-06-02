@@ -3,6 +3,11 @@ const { defaults } = require('jest-config');
 module.exports = {
 	...defaults,
 	rootDir: process.cwd(),
-	moduleDirectories: ['dist/node_modules', ...defaults.moduleDirectories],
+	moduleDirectories: [
+		// 对于 React ReactDOM
+		'dist/node_modules',
+		// 对于第三方依赖
+		...defaults.moduleDirectories
+	],
 	testEnvironment: 'jsdom'
 };
